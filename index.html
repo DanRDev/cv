@@ -331,6 +331,9 @@
     }
 
     .timeline {
+      --line-position: 18px;
+      --job-offset: 52px;
+
       position: relative;
       display: grid;
       gap: 18px;
@@ -339,34 +342,36 @@
     .timeline::before {
       content: "";
       position: absolute;
-      left: 18px;
+      left: var(--line-position);
       top: 22px;
       bottom: 22px;
       width: 2px;
+      transform: translateX(-50%);
       background: linear-gradient(var(--accent), var(--accent-2));
-      opacity: .45;
+      opacity: 0.45;
     }
 
     .job {
       position: relative;
-      margin-left: 52px;
+      margin-left: var(--job-offset);
       padding: 26px;
       border: 1px solid var(--border);
       border-radius: 18px;
-      background: rgba(255,255,255,.025);
+      background: rgba(255, 255, 255, 0.025);
     }
 
     .job::before {
       content: "";
       position: absolute;
-      left: -42px;
+      left: calc(var(--line-position) - var(--job-offset));
       top: 30px;
-      width: 15px;
-      height: 15px;
-      border: 4px solid #0b1728;
+      transform: translateX(-50%);
+      width: 24px;
+      height: 24px;
+      border: 5px solid #0b1728;
       border-radius: 50%;
       background: var(--accent);
-      box-shadow: 0 0 0 3px rgba(100, 230, 179, .2);
+      box-shadow: 0 0 0 3px rgba(100, 230, 179, 0.2);
     }
 
     .job-top {
@@ -453,13 +458,7 @@
   height: 100%;
   border-radius: inherit;
   background: linear-gradient(90deg, var(--accent), var(--accent-2));
-} 
-    .bar span {
-      display: block;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-    }
+}
 
     footer {
       padding: 42px 0 60px;
@@ -480,9 +479,14 @@
       .hero-copy, .profile-card, .section-card { border-radius: 18px; }
       .hero-copy { padding: 28px 22px; }
       .profile-card, .section-card { padding: 22px; }
-      .job { margin-left: 34px; padding: 20px; }
-      .job::before { left: -31px; }
-      .timeline::before { left: 10px; }
+      .timeline {
+        --line-position: 10px;
+        --job-offset: 34px;
+      }
+
+      .job {
+        padding: 20px;
+      }
     }
 
     @media print {
