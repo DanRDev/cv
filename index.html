@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Senior Java Developer portfolio and resume" />
+  <title>Daniil Rihlitcii — Senior Java Developer</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-soft: #0b1728;
+      --card: rgba(16, 31, 50, 0.78);
+      --card-strong: #102138;
+      --text: #f4f7fb;
+      --muted: #aebdd0;
+      --accent: #64e6b3;
+      --accent-2: #70a5ff;
+      --border: rgba(255, 255, 255, 0.09);
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(100, 230, 179, 0.13), transparent 30%),
+        radial-gradient(circle at 90% 10%, rgba(112, 165, 255, 0.15), transparent 28%),
+        linear-gradient(180deg, #07111f 0%, #091525 100%);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+
+    .container {
+      width: min(calc(100% - 36px), var(--max));
+      margin-inline: auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(7, 17, 31, 0.74);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      color: #06111d;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 10px 30px rgba(100, 230, 179, 0.2);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .hero {
+      padding: 88px 0 54px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.45fr 0.75fr;
+      gap: 34px;
+      align-items: stretch;
+    }
+
+    .hero-copy, .profile-card, .section-card {
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(19, 38, 61, 0.9), rgba(12, 26, 44, 0.82));
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+    }
+
+    .hero-copy {
+      padding: clamp(32px, 5vw, 62px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-copy::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      right: -100px;
+      bottom: -120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(100, 230, 179, 0.18), transparent 70%);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 13px;
+      border: 1px solid rgba(100, 230, 179, 0.28);
+      border-radius: 999px;
+      color: var(--accent);
+      background: rgba(100, 230, 179, 0.07);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(100, 230, 179, 0.12);
+    }
+
+    h1 {
+      margin: 24px 0 14px;
+      max-width: 840px;
+      font-size: clamp(2.6rem, 7vw, 5.7rem);
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+    }
+
+    h1 span {
+      color: transparent;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .hero-subtitle {
+      max-width: 760px;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 18px;
+      border-radius: 13px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-primary {
+      color: #06111d;
+      font-weight: 800;
+      border: 0;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      background: rgba(255,255,255,.035);
+    }
+
+    .profile-card {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .avatar {
+      width: 108px;
+      height: 108px;
+      border-radius: 30px;
+      display: grid;
+      place-items: center;
+      font-size: 2rem;
+      font-weight: 900;
+      color: #06111d;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    }
+
+    .profile-card h2 {
+      margin: 18px 0 4px;
+      font-size: 1.55rem;
+    }
+
+    .profile-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: var(--muted);
+      word-break: break-word;
+    }
+
+    .contact-item b {
+      color: var(--text);
+      display: block;
+      font-size: .83rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    section {
+      padding: 26px 0;
+      scroll-margin-top: 94px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
+      letter-spacing: -0.04em;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .section-card {
+      padding: clamp(22px, 4vw, 38px);
+    }
+
+    .summary {
+      color: #d8e2ef;
+      font-size: 1.05rem;
+      margin: 0;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .skill-card {
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .skill-card h3 {
+      margin: 0 0 14px;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .tag {
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: rgba(112, 165, 255, 0.09);
+      border: 1px solid rgba(112, 165, 255, 0.13);
+      color: #d9e5f7;
+      font-size: .88rem;
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: 18px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 22px;
+      bottom: 22px;
+      width: 2px;
+      background: linear-gradient(var(--accent), var(--accent-2));
+      opacity: .45;
+    }
+
+    .job {
+      position: relative;
+      margin-left: 52px;
+      padding: 26px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .job::before {
+      content: "";
+      position: absolute;
+      left: -42px;
+      top: 30px;
+      width: 15px;
+      height: 15px;
+      border: 4px solid #0b1728;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(100, 230, 179, .2);
+    }
+
+    .job-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .job h3 {
+      margin: 0;
+      font-size: 1.25rem;
+    }
+
+    .job-company {
+      margin-top: 4px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .job-date {
+      color: var(--muted);
+      white-space: nowrap;
+      font-size: .94rem;
+    }
+
+    .job ul {
+      margin: 18px 0 0;
+      padding-left: 20px;
+      color: #ced9e7;
+    }
+
+    .job li + li { margin-top: 8px; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .info-card {
+      padding: 26px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .info-card h3 { margin-top: 0; }
+    .info-card p { color: var(--muted); margin-bottom: 0; }
+
+    .lang-row {
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      margin-top: 14px;
+    }
+
+    .bar {
+      height: 8px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255,255,255,.07);
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    }
+
+    footer {
+      padding: 42px 0 60px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid, .skills-grid, .two-col { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .job-top { flex-direction: column; }
+      .job-date { white-space: normal; }
+    }
+
+    @media (max-width: 560px) {
+      .container { width: min(calc(100% - 24px), var(--max)); }
+      .hero { padding-top: 46px; }
+      .hero-copy, .profile-card, .section-card { border-radius: 18px; }
+      .hero-copy { padding: 28px 22px; }
+      .profile-card, .section-card { padding: 22px; }
+      .job { margin-left: 34px; padding: 20px; }
+      .job::before { left: -31px; }
+      .timeline::before { left: 10px; }
+      .lang-row { grid-template-columns: 90px 1fr; }
+      .lang-row small { grid-column: 1 / -1; }
+    }
+
+    @media print {
+      :root {
+        --bg: #ffffff;
+        --text: #111827;
+        --muted: #4b5563;
+        --card: #ffffff;
+        --card-strong: #ffffff;
+        --border: #d1d5db;
+        --accent: #0f766e;
+        --accent-2: #2563eb;
+        --shadow: none;
+      }
+
+      body { background: #fff; }
+      .nav, .hero-actions { display: none !important; }
+      .hero { padding-top: 20px; }
+      .hero-grid { grid-template-columns: 1.4fr .8fr; gap: 16px; }
+      .hero-copy, .profile-card, .section-card, .job, .skill-card, .info-card {
+        box-shadow: none;
+        background: #fff;
+        break-inside: avoid;
+      }
+      section { padding: 12px 0; }
+      .job li, .summary { color: #1f2937; }
+      footer { padding-bottom: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top">
+        <span class="brand-mark">DR</span>
+        <span>Daniil Rihlitcii</span>
+      </a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <header class="hero">
+      <div class="container hero-grid">
+        <article class="hero-copy">
+          <span class="eyebrow"><span class="dot"></span> Open to senior backend opportunities</span>
+          <h1>Senior <span>Java Developer</span></h1>
+          <p class="hero-subtitle">
+            7+ years of experience building secure, scalable enterprise systems across banking,
+            retail, and financial services.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="mailto:daniil.rihlitchii@gmail.com">Contact me</a>
+            <button class="btn btn-secondary" onclick="window.print()">Save as PDF</button>
+            <a class="btn btn-secondary" href="https://www.linkedin.com/in/daniil-rihlitchii/" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+        </article>
+
+        <aside class="profile-card">
+          <div>
+            <div class="avatar">DR</div>
+            <h2>Daniil Rihlitcii</h2>
+            <p>Senior Java Developer</p>
+          </div>
+          <div class="contact-list">
+            <div class="contact-item">
+              <span>📍</span>
+              <div><b>Location</b>Chisinau, Moldova</div>
+            </div>
+            <div class="contact-item">
+              <span>✉️</span>
+              <div><b>Email</b><a href="mailto:daniil.rihlitchii@gmail.com">daniil.rihlitchii@gmail.com</a></div>
+            </div>
+            <div class="contact-item">
+              <span>☎️</span>
+              <div><b>Phone</b><a href="tel:+37378118946">+373 78 11 89 46</a></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <h2>Professional Summary</h2>
+        </div>
+        <div class="section-card">
+          <p class="summary">
+            Senior Java Developer with 7+ years of experience building enterprise applications in banking,
+            retail, and financial services. Expertise in Java, Spring Boot, Vert.x, Temporal, SQL,
+            distributed systems, and cloud-native technologies. Experienced in system modernization,
+            workflow orchestration, performance optimization, and secure backend development. Proven track
+            record of delivering scalable solutions and contributing to modernization initiatives across
+            multiple industries.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-head">
+          <h2>Technical Skills</h2>
+          <p>Backend, cloud, security, testing and delivery</p>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-card">
+            <h3>Backend Development</h3>
+            <div class="tags">
+              <span class="tag">Java 8–21</span><span class="tag">Spring Boot</span>
+              <span class="tag">Spring Security</span><span class="tag">Spring Data</span>
+              <span class="tag">Spring Cloud</span><span class="tag">Vert.x</span>
+              <span class="tag">Temporal</span><span class="tag">Hibernate</span>
+              <span class="tag">REST APIs</span><span class="tag">JavaFX</span>
+              <span class="tag">Thymeleaf</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <h3>Databases</h3>
+            <div class="tags">
+              <span class="tag">PostgreSQL</span><span class="tag">Oracle Database</span>
+              <span class="tag">Microsoft SQL Server</span><span class="tag">MySQL</span>
+              <span class="tag">MongoDB</span><span class="tag">PL/SQL</span>
+              <span class="tag">Stored Procedures</span><span class="tag">Liquibase</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <h3>Cloud & DevOps</h3>
+            <div class="tags">
+              <span class="tag">AWS</span><span class="tag">GCP</span>
+              <span class="tag">Docker</span><span class="tag">Kubernetes</span>
+              <span class="tag">Jenkins</span><span class="tag">GitHub Actions</span>
+              <span class="tag">Bitbucket Pipelines</span><span class="tag">Bazel</span>
+              <span class="tag">XL Release</span><span class="tag">Artifactory</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <h3>Security</h3>
+            <div class="tags">
+              <span class="tag">OAuth2</span><span class="tag">Keycloak</span>
+              <span class="tag">JWT</span><span class="tag">Virtual HSM</span>
+              <span class="tag">Encryption</span><span class="tag">Authentication</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <h3>Testing & Monitoring</h3>
+            <div class="tags">
+              <span class="tag">JUnit</span><span class="tag">Mockito</span>
+              <span class="tag">PowerMock</span><span class="tag">Cucumber</span>
+              <span class="tag">Unit Testing</span><span class="tag">Integration Testing</span>
+              <span class="tag">Kibana</span><span class="tag">Elasticsearch</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <h3>Tools & Methodologies</h3>
+            <div class="tags">
+              <span class="tag">IntelliJ IDEA</span><span class="tag">Maven</span>
+              <span class="tag">Git</span><span class="tag">GitHub</span>
+              <span class="tag">Bitbucket</span><span class="tag">Agile</span>
+              <span class="tag">Scrum</span><span class="tag">Kanban</span>
+              <span class="tag">Jira</span><span class="tag">Confluence</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-head">
+          <h2>Work Experience</h2>
+          <p>Enterprise backend systems since 2018</p>
+        </div>
+
+        <div class="section-card">
+          <div class="timeline">
+            <article class="job">
+              <div class="job-top">
+                <div>
+                  <h3>Senior Java Developer</h3>
+                  <div class="job-company">Orange Systems</div>
+                </div>
+                <div class="job-date">June 2026 — Present</div>
+              </div>
+              <ul>
+                <li>Replaced Spring Boot functionality in a core module with lightweight Vanilla Java solutions, reducing framework dependencies and improving maintainability.</li>
+                <li>Designed and developed a deterministic testing library for Temporal workflows.</li>
+                <li>Developed a reusable library for managing and optimizing payload handling in Temporal workflows.</li>
+                <li>Worked with Java, Temporal, Vert.x, Bazel, Kubernetes, and cloud-native technologies.</li>
+                <li>Contributed to backend architecture improvements and performance optimization initiatives.</li>
+              </ul>
+            </article>
+
+            <article class="job">
+              <div class="job-top">
+                <div>
+                  <h3>Software Engineer</h3>
+                  <div class="job-company">JSCB “ENERGBANK”</div>
+                </div>
+                <div class="job-date">July 2024 — December 2024</div>
+              </div>
+              <ul>
+                <li>Integrated a new mobile banking application with the bank’s backend using PL/SQL stored procedures.</li>
+                <li>Contributed to the migration to a newer Oracle Database version.</li>
+                <li>Modernized parts of the technology stack using Java 17, Spring Boot, Git, and Jenkins.</li>
+                <li>Developed and secured Digital Cards functionality.</li>
+                <li>Implemented a Virtual HSM solution for sensitive data encryption and protection.</li>
+              </ul>
+            </article>
+
+            <article class="job">
+              <div class="job-top">
+                <div>
+                  <h3>Java Developer</h3>
+                  <div class="job-company">Stefanini</div>
+                </div>
+                <div class="job-date">November 2022 — October 2023</div>
+              </div>
+              <ul>
+                <li>Developed and maintained RESTful APIs with a focus on security, scalability, and performance.</li>
+                <li>Participated in enterprise backend development and production support.</li>
+                <li>Resolved application issues and contributed to CI/CD and release management processes.</li>
+                <li>Collaborated with cross-functional Agile teams.</li>
+              </ul>
+            </article>
+
+            <article class="job">
+              <div class="job-top">
+                <div>
+                  <h3>Java Developer</h3>
+                  <div class="job-company">Endava</div>
+                </div>
+                <div class="job-date">September 2018 — December 2022</div>
+              </div>
+              <ul>
+                <li>Developed and maintained retail POS, self-checkout, and self-scan systems.</li>
+                <li>Built an internal desk reservation system from scratch using Java, Spring Boot, and Hibernate.</li>
+                <li>Worked with PostgreSQL databases managing product, employee, and promotion data.</li>
+                <li>Debugged and enhanced JavaFX applications for retail terminals.</li>
+                <li>Automated report generation using Jasper Reports.</li>
+                <li>Monitored production systems using Kibana and investigated application issues.</li>
+                <li>Worked with Oracle Database, Microsoft SQL Server, MySQL, and PostgreSQL.</li>
+                <li>Managed database schema changes using Liquibase and supported customer-specific implementations.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <div class="section-head">
+          <h2>Education & Languages</h2>
+        </div>
+
+        <div class="two-col">
+          <div class="info-card">
+            <h3>Bachelor of Science</h3>
+            <strong>Computer Science & Mathematics</strong>
+            <p>Moldova State University<br>2015 — 2019</p>
+          </div>
+
+          <div class="info-card">
+            <h3>Languages</h3>
+            <div class="lang-row">
+              <strong>Russian</strong>
+              <div class="bar"><span style="width:100%"></span></div>
+              <small>Native</small>
+            </div>
+            <div class="lang-row">
+              <strong>Romanian</strong>
+              <div class="bar"><span style="width:92%"></span></div>
+              <small>Fluent</small>
+            </div>
+            <div class="lang-row">
+              <strong>English</strong>
+              <div class="bar"><span style="width:78%"></span></div>
+              <small>Professional</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© 2026 Daniil Rihlitcii · Senior Java Developer</div>
+  </footer>
+</body>
+</html>
