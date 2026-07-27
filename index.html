@@ -417,19 +417,36 @@
     .info-card h3 { margin-top: 0; }
     .info-card p { color: var(--muted); margin-bottom: 0; }
 
-    .lang-row {
-      display: grid;
-      grid-template-columns: 120px 1fr auto;
-      gap: 12px;
-      align-items: center;
-      margin-top: 14px;
-    }
+.lang-row {
+  display: grid;
+  gap: 8px;
+  margin-top: 18px;
+}
 
-    .bar {
-      height: 8px;
-      overflow: hidden;
-      border-radius: 999px;
-      background: rgba(255,255,255,.07);
+.lang-meta {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+
+.lang-meta strong {
+  grid-column: 2;
+  text-align: center;
+}
+
+.lang-meta small {
+  grid-column: 3;
+  justify-self: end;
+  color: var(--text);
+}
+
+.bar {
+  width: 100%;
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+}ground: rgba(255,255,255,.07);
     }
 
     .bar span {
@@ -737,21 +754,29 @@
 
           <div class="info-card">
             <h3>Languages</h3>
-            <div class="lang-row">
-              <strong>Russian</strong>
-              <div class="bar"><span style="width:100%"></span></div>
-              <small>Native</small>
-            </div>
-            <div class="lang-row">
-              <strong>Romanian</strong>
-              <div class="bar"><span style="width:75%"></span></div>
-              <small>Fluent</small>
-            </div>
-            <div class="lang-row">
-              <strong>English</strong>
-              <div class="bar"><span style="width:78%"></span></div>
-              <small>Professional</small>
-            </div>
+<div class="lang-row">
+  <div class="lang-meta">
+    <strong>Russian</strong>
+    <small>Native</small>
+  </div>
+  <div class="bar"><span style="width: 100%"></span></div>
+</div>
+
+<div class="lang-row">
+  <div class="lang-meta">
+    <strong>Romanian</strong>
+    <small>Fluent</small>
+  </div>
+  <div class="bar"><span style="width: 75%"></span></div>
+</div>
+
+<div class="lang-row">
+  <div class="lang-meta">
+    <strong>English</strong>
+    <small>Professional</small>
+  </div>
+  <div class="bar"><span style="width: 78%"></span></div>
+</div>
           </div>
         </div>
       </div>
